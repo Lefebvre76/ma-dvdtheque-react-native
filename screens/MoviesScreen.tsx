@@ -41,7 +41,7 @@ export default class MoviesScreen extends React.Component {
 
     renderNativeItem = (item: any) => {
         return  <ListItem bottomDivider>
-                    <Avatar source={{uri: item.cover}} />
+                    <Avatar source={{uri: item.poster}} />
                     <ListItem.Content>
                         <ListItem.Title>{item.title}</ListItem.Title>
                         <ListItem.Subtitle>{item.directors.map((director: any) => { return director.name }).join(', ')}</ListItem.Subtitle>
