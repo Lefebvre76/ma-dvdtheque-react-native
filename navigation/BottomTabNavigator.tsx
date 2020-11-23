@@ -5,8 +5,8 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import MoviesScreen from '../screens/MoviesScreen';
+import BoxesScreen from '../screens/BoxesScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -16,20 +16,19 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="DVDthèque"
+        component={TabBoxesNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-disc" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Films"
+        component={TabMoviesNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="md-film" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -44,30 +43,30 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabBoxesStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
+function TabBoxesNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <TabBoxesStack.Navigator>
+      <TabBoxesStack.Screen
+        name="BoxesScreen"
+        component={BoxesScreen}
+        options={{ headerTitle: 'Ma DVDthèque' }}
       />
-    </TabOneStack.Navigator>
+    </TabBoxesStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabMoviesStack = createStackNavigator<TabTwoParamList>();
 
-function TabTwoNavigator() {
+function TabMoviesNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <TabMoviesStack.Navigator>
+      <TabMoviesStack.Screen
+        name="MoviesScreen"
+        component={MoviesScreen}
+        options={{ headerTitle: 'Mes films' }}
       />
-    </TabTwoStack.Navigator>
+    </TabMoviesStack.Navigator>
   );
 }
