@@ -44,7 +44,7 @@ export default class MoviesScreen extends React.Component {
                     <Avatar source={{uri: item.cover}} />
                     <ListItem.Content>
                         <ListItem.Title>{item.title}</ListItem.Title>
-                        <ListItem.Subtitle>{item.directors.map((director: any) => { return director.name })}</ListItem.Subtitle>
+                        <ListItem.Subtitle>{item.directors.map((director: any) => { return director.name }).join(', ')}</ListItem.Subtitle>
                     </ListItem.Content>
                     <ListItem.Chevron/>
                   </ListItem>;
