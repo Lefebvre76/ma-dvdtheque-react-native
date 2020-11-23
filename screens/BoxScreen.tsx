@@ -15,6 +15,9 @@ export default class BoxScreen extends React.Component {
         this.box = this.props.route.params.box;
     }
 
+    showMovieDetails(item: Movie) {
+        this.props.navigation.push('MovieDetails', {movie: item});
+    }
 
     renderNativeItem = (item: Movie) => {
         return  <ListItem bottomDivider onPress={() => this.showMovieDetails(item)}>

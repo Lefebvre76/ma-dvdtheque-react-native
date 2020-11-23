@@ -24,8 +24,9 @@ export default class MoviesScreen extends React.Component {
         fetch(url)
         .then(res => res.json())
         .then(res => {
+            let movies: Movie[] = res.data.map((json: any) => {return Object.assign(new Movie, json)});
             this.setState({ 
-                dataSource: res.data,
+                dataSource: movies,
                 loading: false
             });
         })
@@ -39,12 +40,16 @@ export default class MoviesScreen extends React.Component {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    renderNativeItem = (item: any) => {
-        return  <ListItem bottomDivider>
+    showMovieDetails(item: Movie) {
+        this.props.navigation.push('MovieDetails', {movie: item});
+    }
+
+    renderNativeItem = (item: Movie) => {
+        return  <ListItem bottomDivider onPress={() => this.showMovieDetails(item)}>
                     <Avatar source={{uri: item.poster}} />
                     <ListItem.Content>
                         <ListItem.Title>{item.title}</ListItem.Title>
-                        <ListItem.Subtitle>{item.directors.map((director: any) => { return director.name }).join(', ')}</ListItem.Subtitle>
+                        <ListItem.Subtitle>{item.directorsName()}</ListItem.Subtitle>
                     </ListItem.Content>
                     <ListItem.Chevron/>
                   </ListItem>;
