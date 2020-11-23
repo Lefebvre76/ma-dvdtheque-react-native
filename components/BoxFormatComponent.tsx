@@ -40,27 +40,29 @@ export default class BoxFormatComponent extends React.Component {
     protected backgroundColor() {
         switch (this.format) {
             case 'BR':
-                return "#6699CC"
+                return "#6699CC";
             break;
             case 'BR3D':
-                return "#840032"
+                return "#840032";
             break;
             case 'BR4K':
-                return "#333745"
+                return "#333745";
             break;
             default:
-                return "#FAD4C0"
+                return "#FAD4C0";
             break;
         }
     }
 
     protected textColor() {
         switch (this.format) {
-            case 'BR' || 'BR4K' || 'BR3D':
-                return "#FFFFFF"
+            case 'BR':
+            case 'BR4K':
+            case 'BR3D':
+                return "#FFFFFF";
             break;
             default:
-                return "#000000"
+                return "#000000";
             break;
         }
     }

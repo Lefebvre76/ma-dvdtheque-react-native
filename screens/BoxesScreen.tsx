@@ -25,8 +25,10 @@ export default class BoxesScreen extends React.Component {
         fetch(url)
         .then(res => res.json())
         .then(res => {
+            let boxes: Box[] = res.data.map((json: any) => {return Box.parsing(json)});
+
             this.setState({ 
-                dataSource: res.data,
+                dataSource: boxes,
                 loading: false
             });
         })
@@ -36,19 +38,19 @@ export default class BoxesScreen extends React.Component {
         });
     };
 
-    capFirstLetter = (string: String) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+    showBoxDetails(item: Box) {
+        this.props.navigation.push('BoxDetails', {box: item});
     }
 
     renderNativeItem = (item: any) => {
-        return  <ListItem bottomDivider>
+        return  <ListItem bottomDivider onPress={() => this.showBoxDetails(item)}>
                     <Avatar source={{uri: item.cover}} />
                     <ListItem.Content>
                         <ListItem.Title>{item.name}</ListItem.Title>
                         <BoxFormatComponent format={item.format} />
                     </ListItem.Content>
                     <ListItem.Chevron/>
-                  </ListItem>;
+                </ListItem>;
     }
 
     render() {
